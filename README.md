@@ -1,5 +1,5 @@
-# camera
-# 安卓开发学习路程
+# Camera基础
+## 安卓开发学习路程
 安卓相机的学习与使用
 # 启动Camera的两种方式
     a:直接在intent中指定应用程序的包名（前提是知道完整的包名）
@@ -109,7 +109,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 ## 关联相机和SurfaceView
 	mHolder = mSurface.getHolder();
 ## 调整相机的显示效果
- /**
+<code>
+  /**
      * 完成拍照功能
      *
      * @param v
@@ -131,6 +132,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             }
         });
     }
+</code>
+ 
 ## 自定义相机的预览效果（ResultCapture）
 
 
