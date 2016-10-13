@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LxMobile</string>
+    <string name="title_activity_custom_camera">CustomCamera</string>
 </resources>

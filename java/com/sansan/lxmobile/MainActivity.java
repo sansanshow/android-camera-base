@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static int REQ_2 = 2;
     Button btn_01;
     Button btn_02;
+    Button custom_camera;
     ImageView iv_photo;
     private String mFilePath; // 定义sd卡路径
 
@@ -41,9 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void init() {
         btn_01 = (Button) findViewById(R.id.open_camera1);
         btn_02 = (Button) findViewById(R.id.open_camera2);
+        custom_camera = (Button) findViewById(R.id.custom_camera);
         iv_photo = (ImageView) findViewById(R.id.iv_photo);
         btn_01.setOnClickListener(this);
         btn_02.setOnClickListener(this);
+        custom_camera.setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //通过返回requestCode来读取相机照片，显示相机照片
                 startActivityForResult(camera2, REQ_2);
                 break;
+            case R.id.custom_camera:
+                Intent intent =new Intent(this,CustomCamera.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }
@@ -73,13 +80,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (resultCode == RESULT_OK) {
             if (requestCode == REQ_1) {
                 Bundle bundle = data.getExtras();
-                //将图片显示在ImageView中
+                // 将图片显示在ImageView中
+                // 这种方式返回来的图像是缩略图
                 Bitmap bitmap = (Bitmap) bundle.get("data");
                 iv_photo.setImageBitmap(bitmap);
             } else if (requestCode == REQ_2) {
                 FileInputStream fis = null;
                 try {
-                    //将文件转换成Bitmap
+                    // 将文件转换成Bitmap
+                    // 通过文件修改相机照片保存路径，来保存照片，并读取照片内容
                     fis = new FileInputStream(mFilePath);
                     Bitmap bitmap = BitmapFactory.decodeStream(fis);
                     iv_photo.setImageBitmap(bitmap);

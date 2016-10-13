@@ -21,6 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="拍照保存高清" />
+    <Button
+        android:id="@+id/custom_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义相机" />
 
     <ImageView
         android:id="@+id/iv_photo"
