@@ -110,7 +110,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	mHolder = mSurface.getHolder();
 ## 调整相机的显示效果
 <code>
-  /**
+  `/**
      * 完成拍照功能
      *
      * @param v
@@ -132,6 +132,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             }
         });
     }
+    `
 </code>
  
 ## 自定义相机的预览效果（ResultCapture）
