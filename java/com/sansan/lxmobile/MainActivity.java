@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // 获得sd卡路径
-        mFilePath = Environment.getDownloadCacheDirectory().getPath();
+        mFilePath = Environment.getExternalStorageDirectory().getPath();
         mFilePath = mFilePath + "/" + "temp.png";
         init();
     }
@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.open_camera2://启动相机
                 Intent camera2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                // 修改照片保存路径
                 Uri photoUri = Uri.fromFile(new File(mFilePath));
                 camera2.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                //通过返回requestCode来写
-                Log.i("sssss","0000000");
+                //通过返回requestCode来读取相机照片，显示相机照片
                 startActivityForResult(camera2, REQ_2);
                 break;
             default:
@@ -71,19 +71,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Log.i("sssss","1111111");
             if (requestCode == REQ_1) {
-                Log.i("sssss","2222222");
                 Bundle bundle = data.getExtras();
                 //将图片显示在ImageView中
                 Bitmap bitmap = (Bitmap) bundle.get("data");
                 iv_photo.setImageBitmap(bitmap);
             } else if (requestCode == REQ_2) {
-                Log.i("sssss","3333333");
                 FileInputStream fis = null;
                 try {
                     //将文件转换成Bitmap
-                    Log.i("sssss","4444444");
                     fis = new FileInputStream(mFilePath);
                     Bitmap bitmap = BitmapFactory.decodeStream(fis);
                     iv_photo.setImageBitmap(bitmap);
